@@ -4,17 +4,8 @@ import 'package:image/image.dart' as img;
 import '../account/account_photos.dart';
 import '../account/camera_media.dart';
 import '../phone/phone_library.dart';
-import '../viewer/clean_photo.dart';
 import '../viewer/share_out.dart';
 import 'shared_albums.dart';
-
-/// A new JPEG of [bytes], turned the right way up, with nothing hidden in
-/// it. Null when it can't be read as a picture.
-Uint8List? _remake(Uint8List bytes) {
-  final decoded = img.decodeImage(bytes);
-  if (decoded == null) return null;
-  return img.encodeJpg(img.bakeOrientation(decoded), quality: 92);
-}
 
 /// A small JPEG preview (512 pixels on the longer side) of [bytes].
 Uint8List? _preview(Uint8List bytes) {
@@ -31,11 +22,9 @@ Uint8List? _preview(Uint8List bytes) {
 /// when and on which phone it was taken, or, when that can't be cut out
 /// (other formats, a turned JPEG), a new JPEG.
 Future<Uint8List> cleanForAlbum(Uint8List bytes) async {
-  final stripped = CleanPhoto.stripJpeg(bytes);
-  if (stripped != null) return stripped;
-  final remade = await compute(_remake, bytes);
-  if (remade == null) throw const FormatException('Not a picture');
-  return remade;
+  final clean = await ShareOut.cleanBytes(bytes);
+  if (clean == null) throw const FormatException('Not a picture');
+  return clean;
 }
 
 /// A phone photo or video, ready to add.
