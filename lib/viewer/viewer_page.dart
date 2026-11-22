@@ -41,12 +41,17 @@ class ViewerAction {
     required this.label,
     required this.run,
     this.key,
+    this.visibleFor,
   });
 
   final IconData icon;
   final String label;
   final Future<bool> Function(BuildContext context, ViewerEntry entry) run;
   final Key? key;
+
+  /// Whether it shows for an entry (in a shared album, Remove only for
+  /// what this account added). Null: for every entry.
+  final bool Function(ViewerEntry entry)? visibleFor;
 }
 
 /// Full-screen photos and videos: swipe between them, pinch or double-tap
@@ -120,31 +125,34 @@ class _ViewerPageState extends State<ViewerPage> {
     showModalBottomSheet<void>(
       context: context,
       showDragHandle: true,
+      // Scrolls when the details don't fit (a small or turned phone).
       builder: (ctx) => SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
-              child: Text(
-                l.details,
-                style: Theme.of(ctx).textTheme.titleMedium,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
+                child: Text(
+                  l.details,
+                  style: Theme.of(ctx).textTheme.titleMedium,
+                ),
               ),
-            ),
-            ListTile(
-              leading: const Icon(Icons.event_outlined),
-              title: Text(DateFormat.yMMMMEEEEd(locale).format(e.takenAt)),
-              subtitle: Text(DateFormat.jm(locale).format(e.takenAt)),
-            ),
-            for (final (label, value) in e.details)
               ListTile(
-                leading: const Icon(Icons.info_outline),
-                title: Text(value),
-                subtitle: Text(label),
+                leading: const Icon(Icons.event_outlined),
+                title: Text(DateFormat.yMMMMEEEEd(locale).format(e.takenAt)),
+                subtitle: Text(DateFormat.jm(locale).format(e.takenAt)),
               ),
-            const SizedBox(height: 8),
-          ],
+              for (final (label, value) in e.details)
+                ListTile(
+                  leading: const Icon(Icons.info_outline),
+                  title: Text(value),
+                  subtitle: Text(label),
+                ),
+              const SizedBox(height: 8),
+            ],
+          ),
         ),
       ),
     );
@@ -217,13 +225,14 @@ class _ViewerPageState extends State<ViewerPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     for (final a in widget.actions)
-                      IconButton(
-                        key: a.key,
-                        tooltip: a.label,
-                        color: Colors.white,
-                        icon: Icon(a.icon),
-                        onPressed: () => _run(a),
-                      ),
+                      if (a.visibleFor?.call(entry) ?? true)
+                        IconButton(
+                          key: a.key,
+                          tooltip: a.label,
+                          color: Colors.white,
+                          icon: Icon(a.icon),
+                          onPressed: () => _run(a),
+                        ),
                     IconButton(
                       key: const Key('viewerDetails'),
                       tooltip: l.details,

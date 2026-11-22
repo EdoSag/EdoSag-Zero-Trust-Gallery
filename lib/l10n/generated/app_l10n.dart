@@ -450,6 +450,276 @@ abstract class AppL10n {
   /// In en, this message translates to:
   /// **'Photos you share leave without where, when and on which phone they were taken.'**
   String get cleanShareBody;
+
+  /// No description provided for @sharingTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Sharing'**
+  String get sharingTab;
+
+  /// No description provided for @sharedSignedOutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Shared albums'**
+  String get sharedSignedOutTitle;
+
+  /// No description provided for @sharedSignedOutBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with your Zero-Trust account to share albums with family and friends. Shared albums are end-to-end encrypted: only the people in an album can see its photos, not even us.'**
+  String get sharedSignedOutBody;
+
+  /// No description provided for @sharedUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Shared albums can\'t be reached right now. Check the connection and try again.'**
+  String get sharedUnavailable;
+
+  /// No description provided for @sharedEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No shared albums yet'**
+  String get sharedEmptyTitle;
+
+  /// No description provided for @sharedEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Make an album and invite people with a link or a QR code. Everyone in it sees its photos and can add their own.'**
+  String get sharedEmptyBody;
+
+  /// No description provided for @newSharedAlbum.
+  ///
+  /// In en, this message translates to:
+  /// **'New shared album'**
+  String get newSharedAlbum;
+
+  /// No description provided for @joinSharedAlbum.
+  ///
+  /// In en, this message translates to:
+  /// **'Join with a link'**
+  String get joinSharedAlbum;
+
+  /// No description provided for @albumNameTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Name the album'**
+  String get albumNameTitle;
+
+  /// No description provided for @albumNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Album name'**
+  String get albumNameHint;
+
+  /// No description provided for @create.
+  ///
+  /// In en, this message translates to:
+  /// **'Create'**
+  String get create;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @rename.
+  ///
+  /// In en, this message translates to:
+  /// **'Rename'**
+  String get rename;
+
+  /// No description provided for @people.
+  ///
+  /// In en, this message translates to:
+  /// **'People'**
+  String get people;
+
+  /// No description provided for @addPhotos.
+  ///
+  /// In en, this message translates to:
+  /// **'Add photos'**
+  String get addPhotos;
+
+  /// No description provided for @fromThisPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'From this phone'**
+  String get fromThisPhone;
+
+  /// No description provided for @fromYourAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'From your account'**
+  String get fromYourAccount;
+
+  /// No description provided for @addSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{Add} other{Add {count}}}'**
+  String addSelected(int count);
+
+  /// No description provided for @addingPhotos.
+  ///
+  /// In en, this message translates to:
+  /// **'Adding {done} of {total}…'**
+  String addingPhotos(int done, int total);
+
+  /// No description provided for @photosAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 added to the album} other{{count} added to the album}}'**
+  String photosAdded(int count);
+
+  /// No description provided for @someNotAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 couldn\'t be added. Try it again.} other{{count} couldn\'t be added. Try them again.}}'**
+  String someNotAdded(int count);
+
+  /// No description provided for @addVideoTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add the video as it is?'**
+  String get addVideoTitle;
+
+  /// No description provided for @addVideoBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos are added without where, when and on which phone they were taken. Videos are added as they are, so they may still say where they were filmed.'**
+  String get addVideoBody;
+
+  /// No description provided for @addAnyway.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get addAnyway;
+
+  /// No description provided for @waitingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting to be let in'**
+  String get waitingTitle;
+
+  /// No description provided for @waitingBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask the person who invited you to let you in. First compare this code with the one on their phone:'**
+  String get waitingBody;
+
+  /// No description provided for @stopWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop waiting'**
+  String get stopWaiting;
+
+  /// No description provided for @albumEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing here yet'**
+  String get albumEmptyTitle;
+
+  /// No description provided for @albumEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Add photos from this phone or your account, and invite people to add theirs.'**
+  String get albumEmptyBody;
+
+  /// No description provided for @invitePeople.
+  ///
+  /// In en, this message translates to:
+  /// **'Invite people'**
+  String get invitePeople;
+
+  /// No description provided for @sharedAlbumDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Everyone in this album sees all its photos and can add their own. Only whoever added a photo can remove it. When someone leaves, what they added leaves with them.'**
+  String get sharedAlbumDescription;
+
+  /// No description provided for @memberCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 person} other{{count} people}}'**
+  String memberCount(int count);
+
+  /// No description provided for @detailAddedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Added by'**
+  String get detailAddedBy;
+
+  /// No description provided for @detailAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'Added'**
+  String get detailAdded;
+
+  /// No description provided for @inSharedAlbumEncrypted.
+  ///
+  /// In en, this message translates to:
+  /// **'In a shared album, end-to-end encrypted'**
+  String get inSharedAlbumEncrypted;
+
+  /// No description provided for @removeFromAlbum.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from album'**
+  String get removeFromAlbum;
+
+  /// No description provided for @removePhotoTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove it from the album?'**
+  String get removePhotoTitle;
+
+  /// No description provided for @removePhotoBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It is removed for everyone in the album. A copy on your phone or in your account stays.'**
+  String get removePhotoBody;
+
+  /// No description provided for @remove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get remove;
+
+  /// No description provided for @removedFromAlbum.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed from the album.'**
+  String get removedFromAlbum;
+
+  /// No description provided for @chooseSharedAlbum.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to a shared album'**
+  String get chooseSharedAlbum;
+
+  /// No description provided for @addToSharedAlbum.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to shared album'**
+  String get addToSharedAlbum;
+
+  /// No description provided for @signInToShare.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with your Zero-Trust account to share albums.'**
+  String get signInToShare;
+
+  /// No description provided for @someone.
+  ///
+  /// In en, this message translates to:
+  /// **'Someone'**
+  String get someone;
+
+  /// No description provided for @nothingToPick.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing to pick here.'**
+  String get nothingToPick;
 }
 
 class _AppL10nDelegate extends LocalizationsDelegate<AppL10n> {

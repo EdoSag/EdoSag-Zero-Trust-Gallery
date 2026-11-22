@@ -79,5 +79,88 @@
   "photoAccessSome": "Only the photos you picked",
   "photoAccessNone": "Not allowed",
   "cleanShareTitle": "Clean sharing",
-  "cleanShareBody": "Photos you share leave without where, when and on which phone they were taken."
+  "cleanShareBody": "Photos you share leave without where, when and on which phone they were taken.",
+  "sharingTab": "Sharing",
+  "sharedSignedOutTitle": "Shared albums",
+  "sharedSignedOutBody": "Sign in with your Zero-Trust account to share albums with family and friends. Shared albums are end-to-end encrypted: only the people in an album can see its photos, not even us.",
+  "sharedUnavailable": "Shared albums can't be reached right now. Check the connection and try again.",
+  "sharedEmptyTitle": "No shared albums yet",
+  "sharedEmptyBody": "Make an album and invite people with a link or a QR code. Everyone in it sees its photos and can add their own.",
+  "newSharedAlbum": "New shared album",
+  "joinSharedAlbum": "Join with a link",
+  "albumNameTitle": "Name the album",
+  "albumNameHint": "Album name",
+  "create": "Create",
+  "save": "Save",
+  "rename": "Rename",
+  "people": "People",
+  "addPhotos": "Add photos",
+  "fromThisPhone": "From this phone",
+  "fromYourAccount": "From your account",
+  "addSelected": "{count, plural, =0{Add} other{Add {count}}}",
+  "@addSelected": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "addingPhotos": "Adding {done} of {total}…",
+  "@addingPhotos": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "photosAdded": "{count, plural, =1{1 added to the album} other{{count} added to the album}}",
+  "@photosAdded": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "someNotAdded": "{count, plural, =1{1 couldn't be added. Try it again.} other{{count} couldn't be added. Try them again.}}",
+  "@someNotAdded": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "addVideoTitle": "Add the video as it is?",
+  "addVideoBody": "Photos are added without where, when and on which phone they were taken. Videos are added as they are, so they may still say where they were filmed.",
+  "addAnyway": "Add",
+  "waitingTitle": "Waiting to be let in",
+  "waitingBody": "Ask the person who invited you to let you in. First compare this code with the one on their phone:",
+  "stopWaiting": "Stop waiting",
+  "albumEmptyTitle": "Nothing here yet",
+  "albumEmptyBody": "Add photos from this phone or your account, and invite people to add theirs.",
+  "invitePeople": "Invite people",
+  "sharedAlbumDescription": "Everyone in this album sees all its photos and can add their own. Only whoever added a photo can remove it. When someone leaves, what they added leaves with them.",
+  "memberCount": "{count, plural, =1{1 person} other{{count} people}}",
+  "@memberCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "detailAddedBy": "Added by",
+  "detailAdded": "Added",
+  "inSharedAlbumEncrypted": "In a shared album, end-to-end encrypted",
+  "removeFromAlbum": "Remove from album",
+  "removePhotoTitle": "Remove it from the album?",
+  "removePhotoBody": "It is removed for everyone in the album. A copy on your phone or in your account stays.",
+  "remove": "Remove",
+  "removedFromAlbum": "Removed from the album.",
+  "chooseSharedAlbum": "Add to a shared album",
+  "addToSharedAlbum": "Add to shared album",
+  "signInToShare": "Sign in with your Zero-Trust account to share albums.",
+  "someone": "Someone",
+  "nothingToPick": "Nothing to pick here."
 }

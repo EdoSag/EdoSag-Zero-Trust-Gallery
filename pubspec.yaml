@@ -1,7 +1,7 @@
 name: zerotrust_gallery
 description: "Zero-Trust Gallery: your phone's photos, your encrypted account photos and end-to-end encrypted shared albums."
 publish_to: none
-version: 0.1.0+1
+version: 0.2.0+2
 
 environment:
   sdk: ^3.9.0
@@ -27,6 +27,13 @@ dependencies:
     git:
       url: https://github.com/EdoSag/Zero-Trust-Core.git
       path: packages/zero_trust_core
+      ref: 954479e20ab1a2c0b1a75502753a72eb708e4340
+  # Shared albums: invite by link or QR, join, members (Z24 shared spaces).
+  # Same repository and commit as zero_trust_core.
+  zt_sharing_ui:
+    git:
+      url: https://github.com/EdoSag/Zero-Trust-Core.git
+      path: packages/zt_sharing_ui
       ref: 954479e20ab1a2c0b1a75502753a72eb708e4340
   flutter_riverpod: ^3.5.0
   supabase_flutter: ^2.9.0
