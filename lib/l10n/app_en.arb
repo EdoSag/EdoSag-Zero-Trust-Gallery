@@ -1,0 +1,83 @@
+{
+  "@@locale": "en",
+  "appTitle": "ZT Gallery",
+  "settings": "Settings",
+  "photosTab": "Photos",
+  "albumsTab": "Albums",
+  "accountTab": "Account",
+  "today": "Today",
+  "yesterday": "Yesterday",
+  "photo": "Photo",
+  "video": "Video",
+  "share": "Share",
+  "delete": "Delete",
+  "cancel": "Cancel",
+  "details": "Details",
+  "play": "Play",
+  "pause": "Pause",
+  "signIn": "Sign in or create an account",
+  "selectedCount": "{count, plural, =1{1 selected} other{{count} selected}}",
+  "@selectedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "itemCount": "{count, plural, =0{Empty} =1{1 item} other{{count} items}}",
+  "@itemCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "megabytes": "{amount} MB",
+  "@megabytes": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "accessTitle": "See your photos here",
+  "accessBody": "ZT Gallery shows the photos and videos on this phone. They stay on the phone: nothing is uploaded unless you choose to.",
+  "allowAccess": "Allow access",
+  "somePhotosTitle": "Only some photos",
+  "somePhotosBody": "You let ZT Gallery see only the photos you picked.",
+  "pickMore": "Pick more",
+  "noPhotos": "No photos or videos on this phone yet.",
+  "photosCantLoad": "The photos couldn't be read. Try again in a moment.",
+  "onThisPhone": "On this phone",
+  "inYourAccount": "In your account",
+  "inYourAccountEncrypted": "In your account, end-to-end encrypted",
+  "untitledAlbum": "Untitled album",
+  "detailName": "Name",
+  "detailSize": "Size",
+  "detailLength": "Length",
+  "detailFolder": "Folder",
+  "detailWhere": "Kept",
+  "detailFileSize": "File size",
+  "detailCopy": "Copy",
+  "spaceSaverCopy": "Smaller copy (space saver)",
+  "videoCantPlay": "This video can't be played.",
+  "shareFailed": "Nothing could be shared.",
+  "shareVideoTitle": "Share the video as it is?",
+  "shareVideoBody": "Photos are shared without where, when and on which phone they were taken. Videos are shared as they are, so they may still say where they were filmed.",
+  "shareAnyway": "Share",
+  "saveToPhone": "Save to phone",
+  "savedToPhone": "Saved to this phone (ZT Gallery folder).",
+  "saveFailed": "It couldn't be saved to this phone.",
+  "accountSignedOutTitle": "Your encrypted photos",
+  "accountSignedOutBody": "Sign in with your Zero-Trust account to see the photos you back up with ZT Camera. They are encrypted on your phone before they leave it: nobody else can see them, not even us.",
+  "accountEmptyTitle": "Nothing in your account yet",
+  "accountEmptyBody": "Photos you back up from ZT Camera's Private vault show here, on every phone you sign in on.",
+  "accountCantLoadTitle": "Your account's photos couldn't be read",
+  "accountCantLoadBody": "Check the connection and try again.",
+  "photoAccess": "Photo access",
+  "photoAccessAll": "All photos and videos",
+  "photoAccessSome": "Only the photos you picked",
+  "photoAccessNone": "Not allowed",
+  "cleanShareTitle": "Clean sharing",
+  "cleanShareBody": "Photos you share leave without where, when and on which phone they were taken."
+}
