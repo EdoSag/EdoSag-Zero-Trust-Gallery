@@ -1,6 +1,6 @@
 import 'dart:io';
-import 'dart:typed_data';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
@@ -61,6 +61,11 @@ class ShareOut {
     return CleanPhoto.stripJpeg(fresh) ?? fresh;
   }
 
+  /// [cleanPhoto] for a photo already in memory: when cutting fails, the
+  /// photo is made again as a new JPEG. Null when it isn't a picture.
+  static Future<Uint8List?> cleanBytes(Uint8List bytes) =>
+      cleanPhoto(bytes, () => compute(CleanPhoto.remake, bytes));
+
   /// Shares phone photos and videos. Photos go as clean copies; videos keep
   /// what the camera put in them, so the person is asked first.
   Future<void> phone(BuildContext context, List<PhoneMedia> items) async {
@@ -95,12 +100,18 @@ class ShareOut {
     await ref.read(shareFilesProvider)(paths);
   }
 
-  /// Shares one photo already in memory (from the account), cleaned.
+  /// Shares one photo already in memory (from the account), cleaned: cut
+  /// out of the JPEG, or, for other formats and turned JPEGs, a new JPEG.
+  /// Never the original bytes.
   Future<void> photoBytes(BuildContext context, Uint8List bytes) async {
+    final clean = await cleanBytes(bytes);
+    if (clean == null) {
+      if (context.mounted) _snack(context, context.l10n.shareFailed);
+      return;
+    }
     final dir = await ref.read(outgoingDirProvider)();
     await clear(dir);
     await dir.create(recursive: true);
-    final clean = CleanPhoto.stripJpeg(bytes) ?? bytes;
     final f = File('${dir.path}/photo.jpg');
     await f.writeAsBytes(clean, flush: true);
     await ref.read(shareFilesProvider)([f.path]);
