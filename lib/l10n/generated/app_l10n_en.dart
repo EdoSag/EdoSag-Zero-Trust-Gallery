@@ -210,4 +210,183 @@ class AppL10nEn extends AppL10n {
   @override
   String get cleanShareBody =>
       'Photos you share leave without where, when and on which phone they were taken.';
+
+  @override
+  String get sharingTab => 'Sharing';
+
+  @override
+  String get sharedSignedOutTitle => 'Shared albums';
+
+  @override
+  String get sharedSignedOutBody =>
+      'Sign in with your Zero-Trust account to share albums with family and friends. Shared albums are end-to-end encrypted: only the people in an album can see its photos, not even us.';
+
+  @override
+  String get sharedUnavailable =>
+      'Shared albums can\'t be reached right now. Check the connection and try again.';
+
+  @override
+  String get sharedEmptyTitle => 'No shared albums yet';
+
+  @override
+  String get sharedEmptyBody =>
+      'Make an album and invite people with a link or a QR code. Everyone in it sees its photos and can add their own.';
+
+  @override
+  String get newSharedAlbum => 'New shared album';
+
+  @override
+  String get joinSharedAlbum => 'Join with a link';
+
+  @override
+  String get albumNameTitle => 'Name the album';
+
+  @override
+  String get albumNameHint => 'Album name';
+
+  @override
+  String get create => 'Create';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get rename => 'Rename';
+
+  @override
+  String get people => 'People';
+
+  @override
+  String get addPhotos => 'Add photos';
+
+  @override
+  String get fromThisPhone => 'From this phone';
+
+  @override
+  String get fromYourAccount => 'From your account';
+
+  @override
+  String addSelected(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Add $count',
+      zero: 'Add',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String addingPhotos(int done, int total) {
+    return 'Adding $done of $total…';
+  }
+
+  @override
+  String photosAdded(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count added to the album',
+      one: '1 added to the album',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String someNotAdded(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count couldn\'t be added. Try them again.',
+      one: '1 couldn\'t be added. Try it again.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get addVideoTitle => 'Add the video as it is?';
+
+  @override
+  String get addVideoBody =>
+      'Photos are added without where, when and on which phone they were taken. Videos are added as they are, so they may still say where they were filmed.';
+
+  @override
+  String get addAnyway => 'Add';
+
+  @override
+  String get waitingTitle => 'Waiting to be let in';
+
+  @override
+  String get waitingBody =>
+      'Ask the person who invited you to let you in. First compare this code with the one on their phone:';
+
+  @override
+  String get stopWaiting => 'Stop waiting';
+
+  @override
+  String get albumEmptyTitle => 'Nothing here yet';
+
+  @override
+  String get albumEmptyBody =>
+      'Add photos from this phone or your account, and invite people to add theirs.';
+
+  @override
+  String get invitePeople => 'Invite people';
+
+  @override
+  String get sharedAlbumDescription =>
+      'Everyone in this album sees all its photos and can add their own. Only whoever added a photo can remove it. When someone leaves, what they added leaves with them.';
+
+  @override
+  String memberCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count people',
+      one: '1 person',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get detailAddedBy => 'Added by';
+
+  @override
+  String get detailAdded => 'Added';
+
+  @override
+  String get inSharedAlbumEncrypted =>
+      'In a shared album, end-to-end encrypted';
+
+  @override
+  String get removeFromAlbum => 'Remove from album';
+
+  @override
+  String get removePhotoTitle => 'Remove it from the album?';
+
+  @override
+  String get removePhotoBody =>
+      'It is removed for everyone in the album. A copy on your phone or in your account stays.';
+
+  @override
+  String get remove => 'Remove';
+
+  @override
+  String get removedFromAlbum => 'Removed from the album.';
+
+  @override
+  String get chooseSharedAlbum => 'Add to a shared album';
+
+  @override
+  String get addToSharedAlbum => 'Add to shared album';
+
+  @override
+  String get signInToShare =>
+      'Sign in with your Zero-Trust account to share albums.';
+
+  @override
+  String get someone => 'Someone';
+
+  @override
+  String get nothingToPick => 'Nothing to pick here.';
 }

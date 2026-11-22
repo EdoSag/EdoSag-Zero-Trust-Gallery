@@ -104,6 +104,10 @@ abstract class PhoneLibrary {
   /// The whole picture (a video's first frame), for the viewer.
   ImageProvider image(PhoneMedia m);
 
+  /// A preview as a new JPEG (nothing hidden in it), about [size] pixels
+  /// on its longer side, for shared albums.
+  Future<Uint8List?> thumbnailBytes(PhoneMedia m, {int size = 512});
+
   /// The original file, or null when it can't be read (deleted meanwhile).
   Future<File?> file(PhoneMedia m);
 
@@ -266,6 +270,10 @@ class MediaStoreLibrary implements PhoneLibrary {
           thumbnailSize: const ThumbnailSize(1440, 1440),
         )
       : AssetEntityImageProvider(m.entity!);
+
+  @override
+  Future<Uint8List?> thumbnailBytes(PhoneMedia m, {int size = 512}) =>
+      m.entity!.thumbnailDataWithSize(ThumbnailSize(size, size), quality: 85);
 
   @override
   Future<File?> file(PhoneMedia m) => m.entity!.originFile;

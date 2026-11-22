@@ -6,6 +6,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../app/account.dart';
 import '../l10n/l10n.dart';
 import '../phone/phone_library.dart';
+import '../shared/album_sources.dart';
+import '../shared/shared_pages.dart';
+import '../ui/gallery_message.dart';
 import '../ui/media_grid.dart';
 import '../ui/settings_button.dart';
 import '../viewer/share_out.dart';
@@ -47,7 +50,8 @@ ViewerEntry accountEntry(BuildContext context, WidgetRef ref, CameraMedia m) {
   );
 }
 
-/// Opens the viewer on account items, with Share and Save to phone.
+/// Opens the viewer on account items, with Share, Save to phone and Add to
+/// shared album.
 void openAccountViewer(
   BuildContext context,
   WidgetRef ref,
@@ -124,6 +128,17 @@ void openAccountViewer(
             return false;
           },
         ),
+        ViewerAction(
+          key: const Key('viewerAddToAlbum'),
+          icon: Icons.add_to_photos_outlined,
+          label: l.addToSharedAlbum,
+          run: (context, e) async {
+            await addToSharedAlbumFlow(context, ref, [
+              accountToShared(store, byId[e.key]!),
+            ]);
+            return false;
+          },
+        ),
       ],
     ),
   );
@@ -149,45 +164,6 @@ class _AccountGrid extends ConsumerWidget {
   }
 }
 
-class _Message extends StatelessWidget {
-  const _Message({
-    required this.icon,
-    required this.title,
-    required this.body,
-    this.action,
-  });
-
-  final IconData icon;
-  final String title;
-  final String body;
-  final Widget? action;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Center(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.all(32),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(icon, size: 64, color: theme.colorScheme.primary),
-            const SizedBox(height: 16),
-            Text(
-              title,
-              style: theme.textTheme.titleLarge,
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 8),
-            Text(body, textAlign: TextAlign.center),
-            if (action != null) ...[const SizedBox(height: 24), action!],
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 /// The Account tab: the photos in the Zero-Trust account (backed up from
 /// ZT Camera's Private vault), end-to-end encrypted.
 class AccountPhotosPage extends ConsumerWidget {
@@ -204,7 +180,7 @@ class AccountPhotosPage extends ConsumerWidget {
         actions: const [SettingsButton()],
       ),
       body: !signedIn
-          ? _Message(
+          ? GalleryMessage(
               icon: Icons.cloud_outlined,
               title: l.accountSignedOutTitle,
               body: l.accountSignedOutBody,
@@ -219,13 +195,13 @@ class AccountPhotosPage extends ConsumerWidget {
               ),
             )
           : switch (media) {
-              AsyncData(:final value) when value.isEmpty => _Message(
+              AsyncData(:final value) when value.isEmpty => GalleryMessage(
                 icon: Icons.cloud_done_outlined,
                 title: l.accountEmptyTitle,
                 body: l.accountEmptyBody,
               ),
               AsyncData(:final value) => _AccountGrid(items: value),
-              AsyncError() => _Message(
+              AsyncError() => GalleryMessage(
                 icon: Icons.cloud_off_outlined,
                 title: l.accountCantLoadTitle,
                 body: l.accountCantLoadBody,

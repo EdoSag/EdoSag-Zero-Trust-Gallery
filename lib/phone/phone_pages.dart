@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../l10n/l10n.dart';
+import '../shared/album_sources.dart';
+import '../shared/shared_pages.dart';
 import '../ui/media_grid.dart';
 import '../ui/settings_button.dart';
 import '../viewer/share_out.dart';
@@ -163,7 +165,8 @@ mixin PhoneSelection<W extends ConsumerStatefulWidget> on ConsumerState<W> {
 
   List<PhoneMedia> get picked => _picked.values.toList();
 
-  /// The app bar while selecting: count, Share, Delete.
+  /// The app bar while selecting: count, Share, Add to shared album,
+  /// Delete.
   PreferredSizeWidget selectionBar(BuildContext context) {
     final l = context.l10n;
     return AppBar(
@@ -180,6 +183,16 @@ mixin PhoneSelection<W extends ConsumerStatefulWidget> on ConsumerState<W> {
           icon: const Icon(Icons.share_outlined),
           onPressed: () async {
             await ShareOut(ref).phone(context, picked);
+          },
+        ),
+        IconButton(
+          key: const Key('selectionAddToAlbum'),
+          tooltip: l.addToSharedAlbum,
+          icon: const Icon(Icons.add_to_photos_outlined),
+          onPressed: () async {
+            final library = ref.read(phoneLibraryProvider);
+            final items = [for (final m in picked) phoneToShared(library, m)];
+            await addToSharedAlbumFlow(context, ref, items);
           },
         ),
         IconButton(

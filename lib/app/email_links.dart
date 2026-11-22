@@ -4,6 +4,8 @@ import 'package:app_links/app_links.dart';
 import 'package:flutter/foundation.dart' show debugPrint, kIsWeb;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../shared/join_links.dart';
+
 /// Where the links in account emails lead. Both addresses must be allowed in
 /// Supabase (Authentication > URL Configuration > Redirect URLs:
 /// https://zerotrust.bz/auth/**), or Supabase sends people to the Site URL.
@@ -38,7 +40,8 @@ abstract final class EmailLinks {
     return r;
   }
 
-  /// Starts handling reset links. Call once, after Supabase.initialize.
+  /// Starts handling reset links and shared album invites. Call once,
+  /// after Supabase.initialize.
   /// (Links that carry `?code=` instead, from the default email template,
   /// are handled by supabase_flutter itself.)
   static Future<void> listen() async {
@@ -54,6 +57,8 @@ abstract final class EmailLinks {
   }
 
   static Future<void> _handle(Uri uri) async {
+    // A shared album invite: the home screen opens it.
+    if (JoinLinks.isInvite(uri)) return JoinLinks.offer(uri);
     if (uri.host != 'zerotrust.bz' || !uri.path.startsWith('/auth/')) return;
     // The token is after the # so it never reaches a web server.
     final params = Uri.splitQueryString(uri.fragment);

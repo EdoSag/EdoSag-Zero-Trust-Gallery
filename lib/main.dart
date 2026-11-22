@@ -11,6 +11,7 @@ import 'app/email_links.dart';
 import 'app/gallery_config.dart';
 import 'app/gallery_gate.dart';
 import 'l10n/l10n.dart';
+import 'shared/shared_album.dart';
 import 'viewer/share_out.dart';
 
 Future<void> main() async {
@@ -32,7 +33,11 @@ Future<void> main() async {
   await ZtLanguageController.preload();
   runApp(
     ProviderScope(
-      overrides: [ztAppConfigProvider.overrideWithValue(galleryAppConfig)],
+      overrides: [
+        ztAppConfigProvider.overrideWithValue(galleryAppConfig),
+        // Only owners rename an album; each photo is its adder's alone.
+        ztSpacePolicyProvider.overrideWithValue(gallerySpacePolicy),
+      ],
       child: const ZeroTrustGalleryApp(),
     ),
   );
