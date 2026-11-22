@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:image/image.dart' as img;
 import 'package:zerotrust_gallery/viewer/clean_photo.dart';
+import 'package:zerotrust_gallery/viewer/share_out.dart';
 
 import 'support/fakes.dart';
 
@@ -123,4 +124,55 @@ void main() {
       isNull,
     );
   });
+
+  test('metadata between scans and data after the end are removed too', () {
+    // A second scan (as in progressive JPEGs) with a comment and an XMP
+    // segment before it, and a hidden note after the end marker.
+    final body = testJpeg.sublist(0, testJpeg.length - 2);
+    var sos = 2;
+    while (!(testJpeg[sos] == 0xFF && testJpeg[sos + 1] == 0xDA)) {
+      sos++;
+    }
+    final scan = testJpeg.sublist(sos, testJpeg.length - 2);
+    final dirty = Uint8List.fromList([
+      ...body,
+      ...segment(0xFE, ascii.encode('between scans: Tel Aviv')),
+      ...segment(0xE1, ascii.encode('http://ns.adobe.com/xap/1.0/ GPS')),
+      ...scan,
+      0xFF,
+      0xD9,
+      ...ascii.encode('trailing: Pixel 10 Pro'),
+    ]);
+    final clean = CleanPhoto.stripJpeg(dirty)!;
+    expect(contains(clean, ascii.encode('Tel Aviv')), isFalse);
+    expect(contains(clean, ascii.encode('ns.adobe.com')), isFalse);
+    expect(contains(clean, ascii.encode('Pixel 10 Pro')), isFalse);
+    expect(clean.sublist(clean.length - 2), [0xFF, 0xD9]);
+    // Everything else is kept: both scans and the end marker.
+    expect(clean.length, body.length + scan.length + 2);
+  });
+
+  test('a JPEG cut off in its picture data: null', () {
+    expect(
+      CleanPhoto.stripJpeg(testJpeg.sublist(0, testJpeg.length - 2)),
+      isNull,
+    );
+  });
+
+  test(
+    'a photo that can\'t be cut clean is made again, never sent as is',
+    () async {
+      final turned = withSegments([exifSegment(orientation: 6)]);
+      final fromTurned = (await ShareOut.cleanBytes(turned))!;
+      expect(contains(fromTurned, ascii.encode('Pixel 10 Pro')), isFalse);
+      expect(contains(fromTurned, ascii.encode('Exif')), isFalse);
+      // Turned the right way up: 8x8 stays 8x8, but it is a new JPEG.
+      expect(img.decodeJpg(fromTurned), isNotNull);
+
+      final fromPng = (await ShareOut.cleanBytes(testPng))!;
+      expect(CleanPhoto.isJpeg(fromPng), isTrue);
+
+      expect(await ShareOut.cleanBytes(Uint8List.fromList([1, 2, 3])), isNull);
+    },
+  );
 }

@@ -1,11 +1,15 @@
 import 'dart:typed_data';
 
+import 'package:image/image.dart' as img;
+
 /// Hidden details in a JPEG: where (GPS), when, which phone, and anything
 /// else in EXIF, XMP, IPTC or comments. [stripJpeg] removes them without
 /// touching the picture itself (no re-compression, no quality lost).
 ///
 /// Kept: JFIF (APP0), the colour profile (APP2 ICC, so colours stay right),
-/// Adobe's colour marker (APP14), and of course the image data.
+/// Adobe's colour marker (APP14), and of course the image data. Metadata
+/// between the scans of a progressive JPEG goes too, and so does anything
+/// after the end of the picture.
 abstract final class CleanPhoto {
   static bool isJpeg(Uint8List b) =>
       b.length > 3 && b[0] == 0xFF && b[1] == 0xD8 && b[2] == 0xFF;
@@ -18,7 +22,7 @@ abstract final class CleanPhoto {
     if (!isJpeg(jpeg)) return null;
     final out = BytesBuilder(copy: false)..add(const [0xFF, 0xD8]);
     var i = 2;
-    while (i + 4 <= jpeg.length) {
+    while (i + 2 <= jpeg.length) {
       if (jpeg[i] != 0xFF) return null;
       final marker = jpeg[i + 1];
       // Fill bytes before a marker.
@@ -26,9 +30,9 @@ abstract final class CleanPhoto {
         i++;
         continue;
       }
-      // Start of scan: the picture follows, up to the end; copy the rest.
-      if (marker == 0xDA) {
-        out.add(Uint8List.sublistView(jpeg, i));
+      // End of the picture: anything after it is dropped.
+      if (marker == 0xD9) {
+        out.add(const [0xFF, 0xD9]);
         return out.takeBytes();
       }
       // Markers without a length.
@@ -37,14 +41,41 @@ abstract final class CleanPhoto {
         i += 2;
         continue;
       }
+      if (i + 4 > jpeg.length) return null;
       final len = (jpeg[i + 2] << 8) | jpeg[i + 3];
       if (len < 2 || i + 2 + len > jpeg.length) return null;
       final segment = Uint8List.sublistView(jpeg, i, i + 2 + len);
       if (marker == 0xE1 && _turns(segment)) return null;
       if (_keep(marker)) out.add(segment);
       i += 2 + len;
+      // Start of scan: its picture data runs up to the next real marker
+      // (0xFF 0x00 is a stuffed byte, 0xFF 0xD0-D7 a restart marker, both
+      // part of the data). Markers after it are read like the ones before.
+      if (marker == 0xDA) {
+        final start = i;
+        while (i + 1 < jpeg.length) {
+          if (jpeg[i] == 0xFF) {
+            final next = jpeg[i + 1];
+            if (next != 0x00 && !(next >= 0xD0 && next <= 0xD7)) break;
+            i += 2;
+          } else {
+            i++;
+          }
+        }
+        if (i + 1 >= jpeg.length) return null; // cut off: no end marker
+        out.add(Uint8List.sublistView(jpeg, start, i));
+      }
     }
     return null;
+  }
+
+  /// A new JPEG of [bytes], turned the right way up, with nothing hidden
+  /// in it. Null when it can't be read as a picture. Slow on big photos:
+  /// run it with `compute`.
+  static Uint8List? remake(Uint8List bytes) {
+    final decoded = img.decodeImage(bytes);
+    if (decoded == null) return null;
+    return img.encodeJpg(img.bakeOrientation(decoded), quality: 92);
   }
 
   /// APP0 (JFIF), APP2 (ICC profile), APP14 (Adobe) and every non-APP
