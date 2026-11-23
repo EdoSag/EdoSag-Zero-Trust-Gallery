@@ -1,0 +1,166 @@
+{
+  "@@locale": "en",
+  "appTitle": "ZT Gallery",
+  "settings": "Settings",
+  "photosTab": "Photos",
+  "albumsTab": "Albums",
+  "accountTab": "Account",
+  "today": "Today",
+  "yesterday": "Yesterday",
+  "photo": "Photo",
+  "video": "Video",
+  "share": "Share",
+  "delete": "Delete",
+  "cancel": "Cancel",
+  "details": "Details",
+  "play": "Play",
+  "pause": "Pause",
+  "signIn": "Sign in or create an account",
+  "selectedCount": "{count, plural, =1{1 selected} other{{count} selected}}",
+  "@selectedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "itemCount": "{count, plural, =0{Empty} =1{1 item} other{{count} items}}",
+  "@itemCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "megabytes": "{amount} MB",
+  "@megabytes": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "accessTitle": "See your photos here",
+  "accessBody": "ZT Gallery shows the photos and videos on this phone. They stay on the phone: nothing is uploaded unless you choose to.",
+  "allowAccess": "Allow access",
+  "somePhotosTitle": "Only some photos",
+  "somePhotosBody": "You let ZT Gallery see only the photos you picked.",
+  "pickMore": "Pick more",
+  "noPhotos": "No photos or videos on this phone yet.",
+  "photosCantLoad": "The photos couldn't be read. Try again in a moment.",
+  "onThisPhone": "On this phone",
+  "inYourAccount": "In your account",
+  "inYourAccountEncrypted": "In your account, end-to-end encrypted",
+  "untitledAlbum": "Untitled album",
+  "detailName": "Name",
+  "detailSize": "Size",
+  "detailLength": "Length",
+  "detailFolder": "Folder",
+  "detailWhere": "Kept",
+  "detailFileSize": "File size",
+  "detailCopy": "Copy",
+  "spaceSaverCopy": "Smaller copy (space saver)",
+  "videoCantPlay": "This video can't be played.",
+  "shareFailed": "Nothing could be shared.",
+  "shareVideoTitle": "Share the video as it is?",
+  "shareVideoBody": "Photos are shared without where, when and on which phone they were taken. Videos are shared as they are, so they may still say where they were filmed.",
+  "shareAnyway": "Share",
+  "saveToPhone": "Save to phone",
+  "savedToPhone": "Saved to this phone (ZT Gallery folder).",
+  "saveFailed": "It couldn't be saved to this phone.",
+  "accountSignedOutTitle": "Your encrypted photos",
+  "accountSignedOutBody": "Sign in with your Zero-Trust account to see the photos you back up with ZT Camera. They are encrypted on your phone before they leave it: nobody else can see them, not even us.",
+  "accountEmptyTitle": "Nothing in your account yet",
+  "accountEmptyBody": "Photos you back up from ZT Camera's Private vault show here, on every phone you sign in on.",
+  "accountCantLoadTitle": "Your account's photos couldn't be read",
+  "accountCantLoadBody": "Check the connection and try again.",
+  "photoAccess": "Photo access",
+  "photoAccessAll": "All photos and videos",
+  "photoAccessSome": "Only the photos you picked",
+  "photoAccessNone": "Not allowed",
+  "cleanShareTitle": "Clean sharing",
+  "cleanShareBody": "Photos you share leave without where, when and on which phone they were taken.",
+  "sharingTab": "Sharing",
+  "sharedSignedOutTitle": "Shared albums",
+  "sharedSignedOutBody": "Sign in with your Zero-Trust account to share albums with family and friends. Shared albums are end-to-end encrypted: only the people in an album can see its photos, not even us.",
+  "sharedUnavailable": "Shared albums can't be reached right now. Check the connection and try again.",
+  "sharedEmptyTitle": "No shared albums yet",
+  "sharedEmptyBody": "Make an album and invite people with a link or a QR code. Everyone in it sees its photos and can add their own.",
+  "newSharedAlbum": "New shared album",
+  "joinSharedAlbum": "Join with a link",
+  "albumNameTitle": "Name the album",
+  "albumNameHint": "Album name",
+  "create": "Create",
+  "save": "Save",
+  "rename": "Rename",
+  "people": "People",
+  "addPhotos": "Add photos",
+  "fromThisPhone": "From this phone",
+  "fromYourAccount": "From your account",
+  "addSelected": "{count, plural, =0{Add} other{Add {count}}}",
+  "@addSelected": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "addingPhotos": "Adding {done} of {total}…",
+  "@addingPhotos": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "photosAdded": "{count, plural, =1{1 added to the album} other{{count} added to the album}}",
+  "@photosAdded": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "someNotAdded": "{count, plural, =1{1 couldn't be added. Try it again.} other{{count} couldn't be added. Try them again.}}",
+  "@someNotAdded": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "addVideoTitle": "Add the video as it is?",
+  "addVideoBody": "Photos are added without where, when and on which phone they were taken. Videos are added as they are, so they may still say where they were filmed.",
+  "addAnyway": "Add",
+  "waitingTitle": "Waiting to be let in",
+  "waitingBody": "Ask the person who invited you to let you in. First compare this code with the one on their phone:",
+  "stopWaiting": "Stop waiting",
+  "albumEmptyTitle": "Nothing here yet",
+  "albumEmptyBody": "Add photos from this phone or your account, and invite people to add theirs.",
+  "invitePeople": "Invite people",
+  "sharedAlbumDescription": "Everyone in this album sees all its photos and can add their own. Only whoever added a photo can remove it. When someone leaves, what they added leaves with them.",
+  "memberCount": "{count, plural, =1{1 person} other{{count} people}}",
+  "@memberCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "detailAddedBy": "Added by",
+  "detailAdded": "Added",
+  "inSharedAlbumEncrypted": "In a shared album, end-to-end encrypted",
+  "removeFromAlbum": "Remove from album",
+  "removePhotoTitle": "Remove it from the album?",
+  "removePhotoBody": "It is removed for everyone in the album. A copy on your phone or in your account stays.",
+  "remove": "Remove",
+  "removedFromAlbum": "Removed from the album.",
+  "chooseSharedAlbum": "Add to a shared album",
+  "addToSharedAlbum": "Add to shared album",
+  "signInToShare": "Sign in with your Zero-Trust account to share albums.",
+  "someone": "Someone",
+  "nothingToPick": "Nothing to pick here."
+}
