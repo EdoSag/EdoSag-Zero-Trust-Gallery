@@ -101,7 +101,7 @@ class _ZeroTrustGalleryAppState extends ConsumerState<ZeroTrustGalleryApp>
         AppL10n.delegate,
         ...ZtLanguages.delegates,
       ],
-      home: widget.home,
+      home: ZtSignInHandoffScope(child: widget.home),
       // Any touch on any screen counts as activity for auto-lock.
       builder: (context, child) => Listener(
         onPointerDown: (_) =>
